@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { io, Socket } from "socket.io-client"
+import Button from '@mui/material/Button';
+import styled from 'styled-components';
 
 type AppType = {
   address: string
@@ -13,6 +15,11 @@ type StatusType = {
 function Status({ status, socket }: StatusType) {
   return status ? <>Socket id: {socket?.id}</> : <></>
 }
+
+const MyButton = styled(Button)`
+  width: 20vmin;
+  height: 20vmin;
+`
 
 function App({ address }: AppType) {
   const [socket, setSocket] = useState<Socket>()
@@ -35,6 +42,7 @@ function App({ address }: AppType) {
       <div>HELLO, {address}</div>
       <div>Socket connect status: {status ? 'true' : 'false'}</div>
       <Status status={status} socket={socket} />
+      <MyButton variant="contained">Hello World</MyButton>
     </>
   )
 }
